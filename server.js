@@ -1,9 +1,9 @@
-var express = require('express')
-var graphqlHTTP = require('express-graphql')
-var { buildSchema } = require('graphql')
+const express = require('express')
+const graphqlHTTP = require('express-graphql')
+const { buildSchema } = require('graphql')
 
 // Construct a schema, using GraphQL schema language
-var schema = buildSchema(`
+const schema = buildSchema(`
   input SensorInput {
 	id: String!
 	value: Float
@@ -43,7 +43,7 @@ class Sensor {
 // Maps username to content
 var fakeDatabase = {}
 
-var root = {
+const root = {
   getSensor: function ({id}) {
     if (!fakeDatabase[id]) {
       throw new Error('no sensor exists with id ' + id);
@@ -67,7 +67,7 @@ var root = {
   },
 };
 
-var app = express()
+const app = express()
 
 app.use('/graphql', graphqlHTTP({
   schema: schema,
